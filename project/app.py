@@ -29,21 +29,17 @@ def index():
 
 @app.route("/live-appointments")
 def live_appointments():
-    # Optional: get department filter from query params
     department_filter = request.args.get("department")
     query = {}
     if department_filter:
         query["department"] = department_filter
 
-    # Fetch all bookings not completed, sorted by created_at
     bookings = list(bookings_col.find({**query, "status": {"$ne": "completed"}}).sort("created_at", 1))
 
-    # Add serial number and estimated wait
     appointments = []
     for i, booking in enumerate(bookings, start=1):
         department = booking.get("department", "General Medicine")
         per_patient_time = DEPT_TIME.get(department, 5)
-        # Count patients before this one in same department
         queue_count = bookings_col.count_documents({
             "department": department,
             "status": {"$ne": "completed"},
@@ -72,7 +68,6 @@ def med_box():
 def feedback_reward():
     return render_template("feedback_reward.html")
 
-# ---------------- GET BOOKING WITH ESTIMATED WAIT ----------------
 @app.route("/get_booking", methods=["POST"])
 def get_booking():
     data = request.get_json()
@@ -87,7 +82,6 @@ def get_booking():
     department = booking.get("department", "General Medicine")
     per_patient_time = DEPT_TIME.get(department, 5)
 
-    # Ensure created_at is present
     if "created_at" not in booking:
         booking["created_at"] = datetime.now(timezone.utc)
         bookings_col.update_one(
@@ -95,7 +89,6 @@ def get_booking():
             {"$set": {"created_at": booking["created_at"]}}
         )
 
-    # Count patients in same department before this booking (not completed yet)
     queue_count = bookings_col.count_documents({
         "department": department,
         "status": {"$ne": "completed"},
@@ -110,8 +103,9 @@ def get_booking():
         "estimated_wait": estimated_wait
     })
 
-# ---------------- Run Locally ----------------
+# ---------------- Local Development Only ----------------
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    # Local Flask server for testing on Windows/Mac/Linux
     app.run(host="0.0.0.0", port=port, debug=debug)
