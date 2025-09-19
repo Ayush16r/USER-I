@@ -1,0 +1,4 @@
+name,location,bed_availability,specialties,phone
+SUM Hospital,Bhubaneswar,120,Cardiology;Neurology,1234567890
+KIMS Hospital,Bhubaneswar,80,Orthopedics;Cardiology,0987654321
+AIIMS Hospital,Bhubaneswar,200,General;Neurology,1122334455

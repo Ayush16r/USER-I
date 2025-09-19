@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealX - Find Your Doctor</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='findmydr.css') }}">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F7C762'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E" type="image/svg+xml">
+</head>
+<body>
+    <div class="overlay" aria-hidden="true"></div>
+
+    <header class="app-header">
+        <h1 class="main-heading">"Your Doctor, A Click Away"</h1>
+    </header>
+
+    <main class="container">
+        <section class="selection-box" aria-labelledby="selection-heading">
+            <h2 id="selection-heading" class="visually-hidden">Find a Doctor</h2>
+            
+            <div class="selectors">
+                <label for="citySelect" class="sr-only">Select Location</label>
+                <select id="citySelect" aria-required="true">
+                    <option value="" disabled selected>Select Your City</option>
+                    <option value="patna">Patna</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="bbsr">Bhubaneswar</option>
+                </select>
+                 
+               
+                <label for="hospitalSelect" class="sr-only">Select Hospital</label>
+                <select id="hospitalSelect" disabled aria-required="true">
+                    <option value="" disabled selected>Select Hospital</option>
+                </select>
+
+                <label for="deptSelect" class="sr-only">Select Department</label>
+                <select id="deptSelect" aria-required="true">
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="ent">ENT</option>
+                    <option value="dermatology">Dermatology</option>
+                    <option value="orthopedics">Orthopedics</option>
+                    <option value="cardiology">Cardiology</option>
+                    <option value="pediatrics">Pediatrics</option>
+                </select>
+            </div>
+
+            <button id="submitBtn" class="btn btn-primary" aria-live="polite">Find Doctors</button>
+            <div id="errorMessage" class="error-message" role="alert" aria-live="assertive"></div>
+        </section>
+
+        <section id="doctorResults" class="doctor-results hidden" aria-labelledby="results-heading">
+            <h2 id="results-heading">Available Doctors</h2>
+            <div class="doctor-list" id="doctorList">
+                <p class="no-results-message hidden" id="noResultsMessage">No doctors found matching your criteria.</p>
+            </div>
+            <button id="clearSearchBtn" class="btn btn-secondary hidden">Clear Search</button>
+        </section>
+    </main>
+
+    <footer class="healx-footer-logo">
+        <div class="logo-container">
+            <svg class="healx-logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM13 17h-2v-6h2v6zM13 9h-2V7h2v2z" fill="#F7C762"/>
+            </svg>
+            <span class="healx-logo-text">HealX</span>
+        </div>
+        <p class="healx-tagline">Your hope for a better today, tomorrow, and forever</p>
+    </footer>
+
+     <script src="{{ url_for('static', filename='findmydr.js') }}"></script>
+</body>
+</html>

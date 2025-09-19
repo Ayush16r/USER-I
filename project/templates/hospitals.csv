@@ -1,0 +1,4 @@
+name,location,bed_availability,specialties
+SUM Hospital,Bhubaneswar,120,Cardiology,Neurology
+KIMS Hospital,Bhubaneswar,80,Orthopedics,Cardiology
+AIIMS Hospital,Bhubaneswar,200,General,Neurology
