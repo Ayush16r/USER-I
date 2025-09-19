@@ -56,7 +56,7 @@ def get_booking():
         return jsonify({"error": "Booking ID not found"}), 404
 
     department = booking.get("department", "General Medicine")
-    per_patient_time = DEPT_TIME.get(department, 5)  # default 5 mins if not in map
+    per_patient_time = DEPT_TIME.get(department, 5)
 
     # Ensure created_at is present
     if "created_at" not in booking:
@@ -81,8 +81,7 @@ def get_booking():
         "estimated_wait": estimated_wait
     })
 
-# ---------------- Run ----------------
+# ---------------- Run Locally ----------------
 if __name__ == "__main__":
-       app.run(debug=True)
-    port = int(os.environ.get("PORT", 5000))  # Render provides PORT env
-    app.run(host="0.0.0.0", port=port, debug=False)
+    # For local testing on Windows/Mac
+    app.run(debug=True)
