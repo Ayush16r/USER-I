@@ -2,6 +2,7 @@ flask
 gunicorn
 pandas
 flask-cors
+dnspython
 # MongoDB driver
 pymongo[srv]==4.9.1
 
