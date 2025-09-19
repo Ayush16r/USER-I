@@ -1,10 +1,4 @@
 flask
-gunicorn
-pandas
-flask-cors
+pymongo
 dnspython
-# MongoDB driver
-pymongo[srv]==4.9.1
-
-# For working with environment variables
-python-dotenv==1.0.1
+gunicorn
